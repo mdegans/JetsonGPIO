@@ -8,7 +8,7 @@ project('JetsonGPIO', ['cpp'],
   default_options: [
     'cpp_std=c++17',
     'warning_level=2',  # -Wall, Wextra
-    # 'werror=true',
+    'werror=true',
   ],
 )
 

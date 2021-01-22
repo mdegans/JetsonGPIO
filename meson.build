@@ -7,7 +7,7 @@ project('JetsonGPIO', ['cpp'],
   license: 'MIT',
   default_options: [
     'cpp_std=c++17',
-    # 'warning_level=2',  # -Wall, Wextra
+    'warning_level=2',  # -Wall, Wextra
     # 'werror=true',
   ],
 )

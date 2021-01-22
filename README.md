@@ -1,18 +1,18 @@
 # JetsonGPIO(C++)
-A C++ library that enables the use of Jetson's GPIOs  
+A C++ library that enables the use of Jetson's GPIOs
 (Jetson TX1, TX2, AGX Xavier, and Nano)
-    
-It's an unofficial port of the NVIDIA's official Jetson GPIO Python library to C++.    
+
+It's an unofficial port of the NVIDIA's official Jetson GPIO Python library to C++.
 **NVIDIA's official Jetson GPIO Python library**: https://github.com/NVIDIA/jetson-gpio
-  
+
 The library provides almost same APIs as the the NVIDIA's Jetson GPIO Python library.
-  
-**But it DOESN'T support all functionalites of the NVIDIA's original one.**  
+
+**But it DOESN'T support all functionalites of the NVIDIA's original one.**
 (The gpio_event module hasn't implemented yet, for example.)
-  
-    
+
+
 **(Tested on Jetson Nano and Jetson TX2)**
- 
+
 # Installation
 Clone this repository, build it, and install it.
 
@@ -34,31 +34,15 @@ sudo ninja -C builddir install
 
 # Setting User Permissions
 
-In order to use the Jetson GPIO Library, the correct user permissions/groups must  
-be set first. Or you have to run your program with root permission.    
-  
-Create a new gpio user group. Then add your user to the newly created group.  
+In order to use the Jetson GPIO Library, your user must be in the `gpio` group.
 ```
-sudo groupadd -f -r gpio
 sudo usermod -a -G gpio your_user_name
 ```
-Install custom udev rules by copying the 99-gpio.rules file into the rules.d  
-directory. The 99-gpio.rules file was copied from NVIDIA's official repository.  
-  
-```
-sudo cp JetsonGPIO/99-gpio.rules /etc/udev/rules.d/
-```
-  
-For the new rule to take place, you either need to reboot or reload the udev
-rules by running:
-```
-sudo udevadm control --reload-rules && sudo udevadm trigger
-```
-  
+
 # Library API
 
 The library provides almost same APIs as the the NVIDIA's Jetson GPIO Python library.
-The following discusses the use of each API:  
+The following discusses the use of each API:
 
 #### 1. Include the libary
 
@@ -66,17 +50,17 @@ To include the JetsonGPIO use:
 ```
 #include <JetsonGPIO>
 ```
-  
-All public APIs are declared in namespace "GPIO". If you want to make your code shorter, you can use:  
+
+All public APIs are declared in namespace "GPIO". If you want to make your code shorter, you can use:
 ```
 using namespace GPIO; // optional
 ```
 
 To compile your program use:
 ```
-g++ -o your_program_name your_source_code.cpp -lJetsonGPIO 
+g++ -o your_program_name your_source_code.cpp -lJetsonGPIO
 ```
-  
+
 
 #### 2. Pin numbering
 
@@ -134,7 +118,7 @@ It is also possible to specify an initial value for the output channel:
 ```
 GPIO::setup(channel, GPIO::OUT, GPIO::HIGH);
 ```
-  
+
 
 #### 5. Input
 
@@ -151,11 +135,11 @@ This will return either GPIO::LOW(== 0) or GPIO::HIGH(== 1).
 To set the value of a pin configured as output, use:
 
 ```
-GPIO::output(channel, state); 
+GPIO::output(channel, state);
 ```
 
 where state can be GPIO::LOW(== 0) or GPIO::HIGH(== 1).
-  
+
 
 #### 7. Clean up
 
@@ -180,13 +164,13 @@ To get information about the Jetson module, use/read:
 ```
 std::string info = GPIO::JETSON_INFO;
 ```
-  
+
 To get the model name of your Jetson device, use/read:
 
 ```
 std::string model = GPIO::model;
 ```
-  
+
 To get information about the library version, use/read:
 
 ```
@@ -194,8 +178,8 @@ std::string version = GPIO::VERSION;
 ```
 
 This provides a string with the X.Y.Z version format.
-  
-#### 9. Check function of GPIO channels  
+
+#### 9. Check function of GPIO channels
 
 This feature allows you to check the function of the provided GPIO channel:
 
@@ -205,7 +189,7 @@ GPIO::Directions direction = GPIO::gpio_function(channel);
 
 The function returns either GPIO::IN(GPIO::Directions::IN) or GPIO::OUT(GPIO::Directions::OUT) which are the instances of enum class GPIO::Directions.
 
-#### 10. PWM  
+#### 10. PWM
 
 See `samples/simple_pwm.cpp` for details on how to use PWM channels.
 
@@ -219,4 +203,4 @@ The system pinmux must be configured to connect the hardware PWM controlller(s)
 to the relevant pins. If the pinmux is not configured, PWM signals will not
 reach the pins! The JetsonGPIO library does not dynamically modify the pinmux
 configuration to achieve this. Read the L4T documentation for details on how to
-configure the pinmux.
+configure the pinmux with `jetson_io.py`.

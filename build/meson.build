@@ -32,7 +32,7 @@ if gnu_make.found()
   test('preparatory make clean', gnu_make,
     protocol: 'exitcode',
     args: ['clean'],
-    suite: t['suites'],
+    suite: 'gnu_make',
     workdir: meson.current_source_dir(),
     is_parallel: false,
   )
@@ -56,7 +56,7 @@ if gnu_make.found()
   test('final make clean', gnu_make,
     protocol: 'exitcode',
     args: ['clean'],
-    suite: t['suites'],
+    suite: 'gnu_make',
     workdir: meson.current_source_dir(),
     is_parallel: false,
   )

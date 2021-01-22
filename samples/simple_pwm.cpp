@@ -22,6 +22,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
+#include <JetsonGPIO.h>
+
 #include <iostream>
 // for delay function.
 #include <chrono>
@@ -31,8 +33,6 @@ DEALINGS IN THE SOFTWARE.
 
 // for signal handling
 #include <signal.h>
-
-#include <JetsonGPIO.h>
 
 using namespace std;
 

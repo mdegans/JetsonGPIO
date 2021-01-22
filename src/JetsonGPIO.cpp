@@ -22,6 +22,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
+#include "JetsonGPIO.h"
+#include "private/PythonFunctions.h"
+#include "private/gpio_pin_data.h"
+
 #include <dirent.h>
 #include <unistd.h>
 #include <algorithm>
@@ -37,10 +41,6 @@ DEALINGS IN THE SOFTWARE.
 
 #include <chrono>
 #include <thread>
-
-#include "JetsonGPIO.h"
-#include "private/PythonFunctions.h"
-#include "private/gpio_pin_data.h"
 
 using namespace GPIO;
 using namespace std;

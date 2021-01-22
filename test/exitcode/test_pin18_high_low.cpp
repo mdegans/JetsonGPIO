@@ -27,29 +27,26 @@ DEALINGS IN THE SOFTWARE.
 
 using namespace std;
 
-int main(){
-	cout << "model: "<< GPIO::model << endl;
-	cout << "lib version: " << GPIO::VERSION << endl;
-	cout << GPIO::JETSON_INFO << endl;
+int main() {
+  cout << "model: " << GPIO::model << endl;
+  cout << "lib version: " << GPIO::VERSION << endl;
+  cout << GPIO::JETSON_INFO << endl;
 
+  int output_pin = 18;
+  GPIO::setmode(GPIO::BCM);
+  GPIO::setup(output_pin, GPIO::OUT, GPIO::HIGH);
 
-	int output_pin = 18;
-	GPIO::setmode(GPIO::BCM);
-	GPIO::setup(output_pin, GPIO::OUT, GPIO::HIGH);
-	
+  cout << "BCM " << output_pin << "pin, set to OUTPUT, HIGH" << endl;
+  cout << "Press Enter to Continue";
+  cin.ignore();
 
+  GPIO::output(output_pin, GPIO::LOW);
+  cout << output_pin << "pin, set to LOW now" << endl;
+  cout << "Press Enter to Continue";
+  cin.ignore();
 
-	cout << "BCM "<< output_pin << "pin, set to OUTPUT, HIGH" << endl;
-    cout << "Press Enter to Continue";
-	cin.ignore();
+  GPIO::cleanup();
 
-	GPIO::output(output_pin, GPIO::LOW);
-	cout << output_pin <<"pin, set to LOW now" << endl;
-	cout << "Press Enter to Continue";
-	cin.ignore();
-
-	GPIO::cleanup();	
-
-	cout << "end" << endl;	
-	return 0;
+  cout << "end" << endl;
+  return 0;
 }

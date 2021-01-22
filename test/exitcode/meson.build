@@ -1,4 +1,4 @@
-# this meson.build is for gst-check tests (mostly integration tests)
+# this meson.build is for integration tests
 
 # a list of dicts describing tests
 tests = [

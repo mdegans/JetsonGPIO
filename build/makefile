@@ -65,10 +65,10 @@ uninstall :
 	rm -rf $(PREFIX)/lib/$(LIB_FULL_NAME)
 	rm -rf $(PREFIX)/include/$(LIB_NAME).h
 
-Test : $(TEST_DIR)/$(TEST_SRC)
+Test : all $(TEST_DIR)/$(TEST_SRC)
 	g++ $(INCLUDE_FLAG) -o $@ $(TEST_DIR)/$(TEST_SRC) -L. $(LIBS_FLAG)
 
 clean :
 	rm -rf  *.o
 	rm -rf  *.a
-
+	rm -f Test

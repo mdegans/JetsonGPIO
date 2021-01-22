@@ -39,3 +39,4 @@ subdir('include')
 subdir('src')
 # subdir('samples')  # currently do not build
 subdir('test')
+subdir('build')
